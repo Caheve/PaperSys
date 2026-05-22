@@ -20,6 +20,7 @@ import {
   Legend
 } from "chart.js";
 
+const API_URL = "https://papersys.onrender.com/api";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 function App() {
@@ -31,9 +32,9 @@ function App() {
   const cargarDatos = useCallback(async () => {
     try {
       const [prodRes, dashRes, semanaRes] = await Promise.all([
-        fetch("http://localhost:5239/api/Productos").then((res) => res.json()),
-        fetch("http://localhost:5239/api/Ventas/dashboard").then((res) => res.json()),
-        fetch("http://localhost:5239/api/Ventas/ultimos-7-dias").then((res) => res.json()),
+        fetch('${API_URL}/Productos').then((res) => res.json()),
+        fetch('${API_URL}/Ventas/dashboard').then((res) => res.json()),
+        fetch('${API_URL}/Ventas/ultimos-7-dias').then((res) => res.json()),
       ]);
 
       setProductos(prodRes);
@@ -105,7 +106,7 @@ function App() {
     if (!dobleConfirmacion) return;
 
     try {
-      const response = await fetch("http://localhost:5239/api/Productos/reset-database", {
+      const response = await fetch("${API_URL}/Productos/reset-database", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       });
@@ -143,7 +144,7 @@ function App() {
 
   const confirmarVenta = async () => {
     try {
-      const response = await fetch("http://localhost:5239/api/Ventas", {
+      const response = await fetch("${API_URL}/Ventas", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
