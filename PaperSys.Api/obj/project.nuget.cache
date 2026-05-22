@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fuo+3W7pb90=",
+  "dgSpecHash": "UBBVtwxRSVM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Caheveg\\Downloads\\PaperSys\\PaperSys.Api\\PaperSys.Api.csproj",
+  "projectFilePath": "D:\\Codigo\\PaperSys\\PaperSys.Api\\PaperSys.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Caheveg\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\Caheveg\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",

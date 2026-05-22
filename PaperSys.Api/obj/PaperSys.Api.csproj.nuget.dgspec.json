@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Caheveg\\Downloads\\PaperSys\\PaperSys.Api\\PaperSys.Api.csproj": {}
+    "D:\\Codigo\\PaperSys\\PaperSys.Api\\PaperSys.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Caheveg\\Downloads\\PaperSys\\PaperSys.Api\\PaperSys.Api.csproj": {
+    "D:\\Codigo\\PaperSys\\PaperSys.Api\\PaperSys.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Caheveg\\Downloads\\PaperSys\\PaperSys.Api\\PaperSys.Api.csproj",
+        "projectUniqueName": "D:\\Codigo\\PaperSys\\PaperSys.Api\\PaperSys.Api.csproj",
         "projectName": "PaperSys.Api",
-        "projectPath": "C:\\Users\\Caheveg\\Downloads\\PaperSys\\PaperSys.Api\\PaperSys.Api.csproj",
+        "projectPath": "D:\\Codigo\\PaperSys\\PaperSys.Api\\PaperSys.Api.csproj",
         "packagesPath": "C:\\Users\\Caheveg\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Caheveg\\Downloads\\PaperSys\\PaperSys.Api\\obj\\",
+        "outputPath": "D:\\Codigo\\PaperSys\\PaperSys.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Caheveg\\AppData\\Roaming\\NuGet\\NuGet.Config",
