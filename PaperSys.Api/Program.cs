@@ -17,17 +17,32 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<PaperSysDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? [];
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
         policy =>
         {
-                policy.WithOrigins(
-                "https://papersys.onrender.com"
-                )
+            policy
+                .SetIsOriginAllowed(origin =>
+                {
+                    if (allowedOrigins.Contains(origin, StringComparer.OrdinalIgnoreCase))
+                    {
+                        return true;
+                    }
 
-                  .AllowAnyHeader()
-                  .AllowAnyMethod();
+                    if (!Uri.TryCreate(origin, UriKind.Absolute, out var uri))
+                    {
+                        return false;
+                    }
+
+                    return uri.Host.Equals("localhost", StringComparison.OrdinalIgnoreCase)
+                        || uri.Host.Equals("papersys.onrender.com", StringComparison.OrdinalIgnoreCase)
+                        || uri.Host.EndsWith(".vercel.app", StringComparison.OrdinalIgnoreCase);
+                })
+                .AllowAnyHeader()
+                .AllowAnyMethod();
         });
 });
 

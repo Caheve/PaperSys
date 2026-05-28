@@ -9,6 +9,7 @@ import Sales from "./components/Sales";
 import Reports from "./components/Reports";
 import "../src/App.css";
 import "./styles/Reports.css";
+import { API_URL } from "./api/api";
 
 import {
   Chart as ChartJS,
@@ -20,7 +21,6 @@ import {
   Legend
 } from "chart.js";
 
-const API_URL = "https://papersys.onrender.com/api"; // Asegúrate de que esta URL coincida con la del backend
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 function App() {
