@@ -15,10 +15,34 @@ namespace PaperSys.Api.Controllers
     public class VentasController : ControllerBase
     {
         private readonly PaperSysDbContext _context;
+        private static readonly TimeZoneInfo ColombiaTimeZone = GetColombiaTimeZone();
 
         public VentasController(PaperSysDbContext context)
         {
             _context = context;
+        }
+
+        private static TimeZoneInfo GetColombiaTimeZone()
+        {
+            try
+            {
+                return TimeZoneInfo.FindSystemTimeZoneById("SA Pacific Standard Time");
+            }
+            catch (TimeZoneNotFoundException)
+            {
+                return TimeZoneInfo.FindSystemTimeZoneById("America/Bogota");
+            }
+        }
+
+        private static DateTime ToUtc(DateTime localDate)
+        {
+            return TimeZoneInfo.ConvertTimeToUtc(DateTime.SpecifyKind(localDate, DateTimeKind.Unspecified), ColombiaTimeZone);
+        }
+
+        private static DateTime ToColombiaDate(DateTime utcDate)
+        {
+            var utc = DateTime.SpecifyKind(utcDate, DateTimeKind.Utc);
+            return TimeZoneInfo.ConvertTimeFromUtc(utc, ColombiaTimeZone).Date;
         }
 
         [HttpPost]
@@ -27,7 +51,7 @@ namespace PaperSys.Api.Controllers
             if (!dto.Productos.Any())
                 return BadRequest("La venta debe contener productos.");
 
-            var venta = new Venta();
+            var venta = new Venta { Fecha = DateTime.UtcNow };
             decimal total = 0;
 
             foreach (var item in dto.Productos)
@@ -333,18 +357,20 @@ namespace PaperSys.Api.Controllers
         [HttpGet("dashboard")]
         public async Task<IActionResult> Dashboard()
         {
-            var hoy = DateTime.Today;
+            var hoy = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, ColombiaTimeZone).Date;
             var manana = hoy.AddDays(1);
+            var inicioUtc = ToUtc(hoy);
+            var finUtc = ToUtc(manana);
 
             var ventasHoy = _context.Ventas
-                .Where(v => v.Fecha >= hoy && v.Fecha < manana);
+                .Where(v => v.Fecha >= inicioUtc && v.Fecha < finUtc);
 
             var totalVendido = await ventasHoy.SumAsync(v => v.Total);
 
             var cantidadVentas = await ventasHoy.CountAsync();
 
             var productoMasVendido = await _context.VentaDetalles
-                .Where(d => d.Venta.Fecha >= hoy && d.Venta.Fecha < manana)
+                .Where(d => d.Venta.Fecha >= inicioUtc && d.Venta.Fecha < finUtc)
                 .GroupBy(d => d.Producto.Nombre)
                 .Select(g => new {
                     Nombre = g.Key,
@@ -369,25 +395,31 @@ namespace PaperSys.Api.Controllers
         [HttpGet("ultimos-7-dias")]
         public async Task<IActionResult> Ultimos7Dias()
         {
-            var hoy = DateTime.Today;
+            var hoy = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, ColombiaTimeZone).Date;
             var hace7Dias = hoy.AddDays(-6); // incluye hoy
+            var inicioUtc = ToUtc(hace7Dias);
+            var finUtc = ToUtc(hoy.AddDays(1));
 
             var ventas = await _context.Ventas
-                .Where(v => v.Fecha >= hace7Dias && v.Fecha < hoy.AddDays(1))
-                .GroupBy(v => v.Fecha.Date)
+                .Where(v => v.Fecha >= inicioUtc && v.Fecha < finUtc)
+                .Select(v => new { v.Fecha, v.Total })
+                .ToListAsync();
+
+            var ventasPorDia = ventas
+                .GroupBy(v => ToColombiaDate(v.Fecha))
                 .Select(g => new
                 {
                     Fecha = g.Key,
                     Total = g.Sum(v => v.Total)
                 })
-                .ToListAsync();
+                .ToList();
 
             // Generamos los 7 días aunque no haya ventas
             var resultado = Enumerable.Range(0, 7)
                 .Select(i =>
                 {
                     var fecha = hace7Dias.AddDays(i);
-                    var ventaDia = ventas.FirstOrDefault(v => v.Fecha == fecha);
+                    var ventaDia = ventasPorDia.FirstOrDefault(v => v.Fecha == fecha);
 
                     return new
                     {

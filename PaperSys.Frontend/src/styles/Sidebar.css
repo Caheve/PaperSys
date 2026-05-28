@@ -21,6 +21,7 @@
     justify-content: space-between;
     padding: 0 16px;
     gap: 12px;
+    min-width: 0;
 }
 
 .logo {
@@ -28,12 +29,15 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    flex: 0 0 auto;
+    white-space: nowrap;
 }
 
 .topnav {
     display: flex;
     gap: 16px;
     align-items: center;
+    min-width: 0;
 }
 
 .topnav a {
@@ -41,19 +45,83 @@
     text-decoration: none;
     padding: 8px 10px;
     border-radius: 8px;
+    white-space: nowrap;
 }
 
 .topnav a:hover {
     background: #f4f6fb;
 }
 
+.reset-button {
+    padding: 8px 12px;
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    transition: background 0.2s ease, transform 0.2s ease;
+    white-space: nowrap;
+}
+
+.reset-button:hover {
+    background: #ff5252;
+}
+
 /* Responsive: collapse to stacked menu on small screens */
-@media (max-width: 700px) {
-    .topbar-inner { padding: 0 12px; }
+@media (max-width: 900px) {
+    .topbar-inner {
+        max-width: none;
+        padding: 0 12px;
+    }
+
     .topnav {
         gap: 8px;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: 2px;
+    }
+
+    .topnav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .topnav a,
+    .reset-button {
+        padding: 8px 9px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 560px) {
+    :root { --topbar-height: 104px; }
+
+    .topbar {
+        height: var(--topbar-height);
+    }
+
+    .topbar-inner {
+        align-items: stretch;
+        flex-direction: column;
+        justify-content: center;
+        gap: 8px;
+        padding: 8px 10px;
+    }
+
+    .logo {
+        font-size: 15px;
+        height: 28px;
+    }
+
+    .topnav {
+        width: 100%;
+    }
+
+    .topnav a,
+    .reset-button {
+        flex: 0 0 auto;
     }
 }
 
