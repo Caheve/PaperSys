@@ -23,7 +23,7 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy.WithOrigins(
-                "http://localhost:5173",
+                "http://localhost:5239",
                 "https://papersys-app-tsd7.vercel.app")
 
                   .AllowAnyHeader()

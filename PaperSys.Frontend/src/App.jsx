@@ -20,7 +20,7 @@ import {
   Legend
 } from "chart.js";
 
-const API_URL = "https://papersys.onrender.com/api";
+const API_URL = "http://localhost:5173/api";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 function App() {

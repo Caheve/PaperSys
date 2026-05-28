@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "targets": {
     "net10.0": {
       "Azure.Core/1.47.1": {
@@ -3802,11 +3802,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Codigo\\PaperSys\\PaperSys.Api\\PaperSys.Api.csproj",
+      "projectUniqueName": "C:\\Users\\Caheveg\\OneDrive\\Desktop\\Codigo\\PaperSys\\PaperSys.Api\\PaperSys.Api.csproj",
       "projectName": "PaperSys.Api",
-      "projectPath": "D:\\Codigo\\PaperSys\\PaperSys.Api\\PaperSys.Api.csproj",
+      "projectPath": "C:\\Users\\Caheveg\\OneDrive\\Desktop\\Codigo\\PaperSys\\PaperSys.Api\\PaperSys.Api.csproj",
       "packagesPath": "C:\\Users\\Caheveg\\.nuget\\packages\\",
-      "outputPath": "D:\\Codigo\\PaperSys\\PaperSys.Api\\obj\\",
+      "outputPath": "C:\\Users\\Caheveg\\OneDrive\\Desktop\\Codigo\\PaperSys\\PaperSys.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Caheveg\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3821,6 +3821,7 @@
       },
       "frameworks": {
         "net10.0": {
+          "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {}
         }
@@ -3835,10 +3836,11 @@
         "auditLevel": "low",
         "auditMode": "all"
       },
-      "SdkAnalysisLevel": "10.0.100"
+      "SdkAnalysisLevel": "10.0.300"
     },
     "frameworks": {
       "net10.0": {
+        "framework": "net10.0",
         "targetAlias": "net10.0",
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
@@ -3891,7 +3893,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
