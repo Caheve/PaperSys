@@ -1,9 +1,10 @@
 .dashboard-container {
-  padding: 16px;
+  padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   max-width: 1200px;
   margin: 0 auto;
-  min-height: calc(100vh - 64px);
+  min-height: calc(100dvh - var(--topbar-height) - 44px);
+  width: 100%;
 }
 
 .dashboard-cards {
@@ -16,7 +17,7 @@
 .dashboard-cards > div {
   background: white;
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   font-size: 16px;
   font-weight: 600;
@@ -49,7 +50,7 @@
 .chart-container {
   background: white;
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   margin-bottom: 20px;
 }
@@ -64,7 +65,7 @@
 /* Tablet responsivo */
 @media (max-width: 900px) {
   .dashboard-container {
-    padding: 12px;
+    padding: 0;
   }
 
   .dashboard-cards {
@@ -91,7 +92,7 @@
 /* Móvil responsivo */
 @media (max-width: 600px) {
   .dashboard-container {
-    padding: 8px;
+    padding: 0;
   }
 
   .dashboard-cards {
@@ -118,7 +119,7 @@
 /* Móvil muy pequeño */
 @media (max-width: 400px) {
   .dashboard-container {
-    padding: 6px;
+    padding: 0;
   }
 
   .dashboard-cards > div {

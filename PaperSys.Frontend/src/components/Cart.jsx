@@ -7,7 +7,7 @@ function Cart({ carrito, actualizarCantidad, eliminarDelCarrito, vaciarCarrito, 
   );
 
   return (
-    <div className="cart-root" style={{ width: '95%' }}>
+    <div className="cart-root">
       <div className="cart-inner">
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <h3 style={{ margin: "auto" }}>🛒 Carrito</h3>

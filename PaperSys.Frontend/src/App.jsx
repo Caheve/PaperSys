@@ -20,7 +20,7 @@ import {
   Legend
 } from "chart.js";
 
-const API_URL = "http://localhost:5173/api";
+const API_URL = "http://localhost:5239/api"; // Asegúrate de que esta URL coincida con la del backend
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 function App() {
@@ -32,9 +32,9 @@ function App() {
   const cargarDatos = useCallback(async () => {
     try {
       const [prodRes, dashRes, semanaRes] = await Promise.all([
-        fetch('${API_URL}/Productos').then((res) => res.json()),
-        fetch('${API_URL}/Ventas/dashboard').then((res) => res.json()),
-        fetch('${API_URL}/Ventas/ultimos-7-dias').then((res) => res.json()),
+        fetch(`${API_URL}/Productos`).then((res) => res.json()),
+        fetch(`${API_URL}/Ventas/dashboard`).then((res) => res.json()),
+        fetch(`${API_URL}/Ventas/ultimos-7-dias`).then((res) => res.json()),
       ]);
 
       setProductos(prodRes);
@@ -106,7 +106,7 @@ function App() {
     if (!dobleConfirmacion) return;
 
     try {
-      const response = await fetch("${API_URL}/Productos/reset-database", {
+      const response = await fetch(`${API_URL}/Productos/reset-database`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       });
@@ -144,7 +144,7 @@ function App() {
 
   const confirmarVenta = async () => {
     try {
-      const response = await fetch("${API_URL}/Ventas", {
+      const response = await fetch(`${API_URL}/Ventas`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -169,9 +169,9 @@ function App() {
 
   return (
     <Router>
-      <div style={{ display: "flex", flexDirection: "row", height: "100vh", width: "100vw" }}>
+      <div className="app-shell">
         <Sidebar onReset={resetearBaseDatos} />
-        <div style={{ flex: 1, padding: "20px", paddingTop: 'var(--topbar-height)' }}>
+        <main className="app-main">
           <Routes>
             <Route
               path="/"
@@ -182,7 +182,7 @@ function App() {
             <Route
               path="/inventario"
               element={
-                <div style={{ position: 'relative' }}>
+                <div className="inventory-page">
                   <div className="products-scroll">
                     <Inventory productos={productos} agregarAlCarrito={agregarAlCarrito} />
                   </div>
@@ -206,7 +206,7 @@ function App() {
             <Route path="/ventas" element={<Sales />} />
             <Route path="/productos" element={<ManageProducts />} />
           </Routes>
-        </div>
+        </main>
       </div>
     </Router>
   );
