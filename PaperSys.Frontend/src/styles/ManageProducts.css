@@ -1,10 +1,11 @@
 /* Gestión de productos - estilos consistentes con Inventory */
 .manage-container {
-  padding: 16px;
+  padding: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
   max-width: 1200px;
-  margin: 12px auto;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .manage-grid {
@@ -17,15 +18,13 @@
 .manage-form {
   background: #fff;
   padding: 16px;
-  border-radius: 12px;
+  border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   height: fit-content;
 }
 
 .manage-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 16px;
+  min-width: 0;
 }
 
 .manage-form h3 {
@@ -164,9 +163,9 @@
 
 .manage-list .inventory-card {
   padding: 14px;
-  border-radius: 12px;
+  border-radius: 8px;
   background: #fff;
-  border-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease;
   display: flex;
   flex-direction: column;
@@ -202,7 +201,7 @@
 /* Móvil responsivo */
 @media (max-width: 600px) {
   .manage-container {
-    padding: 12px;
+    padding: 0;
   }
 
   .manage-grid {
@@ -244,8 +243,7 @@
   }
 
   .manage-list {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    width: 100%;
   }
 
   .manage-list .inventory-card {
@@ -270,7 +268,7 @@
   }
 
   .manage-container {
-    padding: 8px;
+    padding: 0;
   }
 
   .manage-form {

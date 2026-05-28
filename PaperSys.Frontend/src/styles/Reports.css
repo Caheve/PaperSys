@@ -1,9 +1,10 @@
 .reports-container {
-  padding: 20px;
+  padding: 0;
   max-width: 1200px;
   margin: 0 auto;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  min-height: calc(100vh - 64px);
+  min-height: calc(100dvh - var(--topbar-height) - 44px);
+  width: 100%;
 }
 
 .reports-header {
@@ -25,7 +26,7 @@
   align-items: flex-end;
   background: #f8f9fa;
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
@@ -126,7 +127,7 @@
 .stat-card {
   background: white;
   padding: 24px;
-  border-radius: 12px;
+  border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   border-left: 4px solid #50C79F;
   transition: all 0.3s ease;
@@ -179,7 +180,7 @@
 .summary-card {
   background: white;
   padding: 24px;
-  border-radius: 12px;
+  border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   margin-bottom: 30px;
   border-top: 3px solid #50C79F;
@@ -224,9 +225,10 @@
 .products-table-container {
   background: white;
   padding: 24px;
-  border-radius: 12px;
+  border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   margin-bottom: 30px;
+  overflow-x: auto;
 }
 
 .products-table-container h3 {
@@ -238,6 +240,7 @@
 
 .products-table {
   width: 100%;
+  min-width: 540px;
   border-collapse: collapse;
 }
 
@@ -295,7 +298,7 @@
 /* Tablet responsivo */
 @media (max-width: 900px) {
   .reports-container {
-    padding: 12px;
+    padding: 0;
   }
 
   .reports-header h2 {
@@ -341,7 +344,7 @@
 /* Móvil responsivo */
 @media (max-width: 600px) {
   .reports-container {
-    padding: 8px;
+    padding: 0;
   }
 
   .reports-header {
@@ -422,7 +425,7 @@
 /* Móvil muy pequeño */
 @media (max-width: 380px) {
   .reports-container {
-    padding: 6px;
+    padding: 0;
   }
 
   .stats-grid {

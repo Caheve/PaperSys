@@ -13,20 +13,8 @@ function Sidebar({ onReset }) {
           <Link to="/ventas">🛒 Ventas</Link>
           <Link to="/reportes">📊 Reportes</Link>
           <button
+            className="reset-button"
             onClick={onReset}
-            style={{
-              padding: "8px 12px",
-              background: "#ff6b6b",
-              color: "white",
-              border: "none",
-              borderRadius: "6px",
-              cursor: "pointer",
-              fontSize: "12px",
-              fontWeight: "bold",
-              transition: "all 0.3s ease",
-            }}
-            onMouseEnter={(e) => (e.target.style.background = "#ff5252")}
-            onMouseLeave={(e) => (e.target.style.background = "#ff6b6b")}
             title="Eliminar todos los datos de la BD"
           >
             🗑️ Limpiar BD
