@@ -37,7 +37,7 @@ builder.Services.AddCors(options =>
                         return false;
                     }
 
-                    return uri.Host.Equals("papersys.onrender.com", StringComparison.OrdinalIgnoreCase)
+                    return uri.Host.Equals("papersys.onrender.com", StringComparison.OrdinalIgnoreCase);
                         
                 })
                 .AllowAnyHeader()

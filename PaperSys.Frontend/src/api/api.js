@@ -1,5 +1,10 @@
+const DEFAULT_API_URL = "https://papersys.onrender.com/api";
+const configuredApiUrl = import.meta.env.VITE_API_URL;
+
 export const API_URL = (
-  import.meta.env.VITE_API_URL || "https://papersys.onrender.com/api"
+  !import.meta.env.DEV && configuredApiUrl?.includes("localhost")
+    ? DEFAULT_API_URL
+    : configuredApiUrl || DEFAULT_API_URL
 ).replace(/\/$/, "");
 
 export const getProductos = async () => {
