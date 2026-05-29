@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PaperSys.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3a48bc10a3ebcc5f3a3a9f1c5013df64cfdad149")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c39955dd0808bb6c820be22abe8e31a65de8d0ba")]
 [assembly: System.Reflection.AssemblyProductAttribute("PaperSys.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PaperSys.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
