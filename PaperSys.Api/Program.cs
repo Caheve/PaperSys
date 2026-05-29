@@ -37,9 +37,8 @@ builder.Services.AddCors(options =>
                         return false;
                     }
 
-                    return uri.Host.Equals("localhost", StringComparison.OrdinalIgnoreCase)
-                        || uri.Host.Equals("papersys.onrender.com", StringComparison.OrdinalIgnoreCase)
-                        || uri.Host.EndsWith(".vercel.app", StringComparison.OrdinalIgnoreCase);
+                    return uri.Host.Equals("papersys.onrender.com", StringComparison.OrdinalIgnoreCase)
+                        
                 })
                 .AllowAnyHeader()
                 .AllowAnyMethod();
