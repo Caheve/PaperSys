@@ -1,4 +1,4 @@
-@PaperSys.Api_HostAddress = http://localhost:5239
+@PaperSys.Api_HostAddress = https://papersys.onrender.com
 
 GET {{PaperSys.Api_HostAddress}}/weatherforecast/
 Accept: application/json
