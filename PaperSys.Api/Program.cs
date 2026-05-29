@@ -17,31 +17,14 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<PaperSysDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? [];
-
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
         policy =>
         {
-            policy
-                .SetIsOriginAllowed(origin =>
-                {
-                    if (allowedOrigins.Contains(origin, StringComparer.OrdinalIgnoreCase))
-                    {
-                        return true;
-                    }
-
-                    if (!Uri.TryCreate(origin, UriKind.Absolute, out var uri))
-                    {
-                        return false;
-                    }
-
-                    return uri.Host.Equals("papersys.onrender.com", StringComparison.OrdinalIgnoreCase);
-                        
-                })
-                .AllowAnyHeader()
-                .AllowAnyMethod();
+            policy.WithOrigins("http://localhost:5173")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
         });
 });
 
