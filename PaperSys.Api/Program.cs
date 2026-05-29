@@ -22,17 +22,20 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowFrontend",
         policy =>
         {
-                policy.WithOrigins(
-                "https://papersys-app-tsd7.vercel.app",
-                "http://localhost:5173",
-                "http://localhost:5174",
-                "http://localhost:4173",
-                "http://127.0.0.1:5173",
-                "http://127.0.0.1:5174",
-                "http://127.0.0.1:4173")
+            policy
+                .SetIsOriginAllowed(origin =>
+                {
+                    if (!Uri.TryCreate(origin, UriKind.Absolute, out var uri))
+                    {
+                        return false;
+                    }
 
-                  .AllowAnyHeader()
-                  .AllowAnyMethod();
+                    return uri.Host.Equals("localhost", StringComparison.OrdinalIgnoreCase)
+                        || uri.Host.Equals("papersys-app-tsd7.vercel.app", StringComparison.OrdinalIgnoreCase)
+                        || uri.Host.EndsWith(".vercel.app", StringComparison.OrdinalIgnoreCase);
+                })
+                .AllowAnyHeader()
+                .AllowAnyMethod();
         });
 });
 
